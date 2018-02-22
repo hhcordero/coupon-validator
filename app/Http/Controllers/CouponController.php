@@ -6,10 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCoupon;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 use App\Coupon;
 use App\CouponInventory;
 use App\Mail\CouponDownloadLink;
+use App\Mail\CouponDownload;
 
 class CouponController extends Controller
 {
@@ -32,6 +33,7 @@ class CouponController extends Controller
     public function store(StoreCoupon $request)
     {
 		$coupon = new Coupon;
+		$coupon->uuid			= (string) Str::uuid();
 		$coupon->ticket_number 	= $request->ticket_number;
 		$coupon->email 			= $request->email;
 		$coupon->first_name 	= $request->first_name;
@@ -39,8 +41,8 @@ class CouponController extends Controller
 		$coupon->save();
 
 		$coupon->download_link	= route('coupon.download', [
-									'id' => $coupon->id,
-									'hash' => urlencode(Hash::make($request->ticket_number . '|' . $request->email))]);
+									'id' 	=> $coupon->id,
+									'hash' 	=> $coupon->uuid]);
 
 		Mail::to($request->email)
 			->send(new CouponDownloadLink($coupon));
@@ -60,14 +62,12 @@ class CouponController extends Controller
     {
 		$coupon = Coupon::findOrFail($id);
 
-		if (Hash::check($coupon->ticket_number . '|' . $coupon->email, urldecode($hash))) {
+		if (strcmp($coupon->uuid, $hash) === 0) {
+
 			// Generate image
 
-			// Send email
-			/*
-			Mail::to($request->email)
+			Mail::to($coupon->email)
 				->send(new CouponDownload($coupon));
-			*/
 
 			return redirect()->route('coupon')
 				->with('success', 'Coupon was sent. Please check your email.');

@@ -8,7 +8,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use App\Coupon;
 
-class CouponDownloadLink extends Mailable
+class CouponDownload extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -36,6 +36,6 @@ class CouponDownloadLink extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.coupons.downloadlink');
+        return $this->view('emails.coupons.download');
     }
 }
