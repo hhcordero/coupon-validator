@@ -9,7 +9,16 @@
   <body class="bg-light">
     <div class="container">
       <p>Hi {{ $coupon->first_name }},</p>
-      <p>Here's your coupon.</p>
+      <p>Below are the information you provided.</p>
+      <div>
+        <ul>
+            <li>Ticket number   : {{ $coupon->ticket_number }}</li>
+            <li>Email           : {{ $coupon->email }}</li>
+            <li>First Name      : {{ $coupon->first_name }}</li>
+            <li>Last Name       : {{ $coupon->last_name }}</li>
+        </ul>
+      </div>
+      <p>Attached is your coupon.</p>
       <div>
         <img src="{{ $message->embed('dummy-blank-coupon.jpg') }}">
       </div>
