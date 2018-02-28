@@ -4,12 +4,17 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Coupon Download - Coupon Validator</title>
+    <title>Your HSBC Singapore Rugby 7s Voucher</title>
   </head>
   <body class="bg-light">
     <div class="container">
       <p>Hi {{ $coupon->first_name }},</p>
-      <p>Below are the information you provided.</p>
+      <p>Time to start enjoying those offers!</p>
+	  <div>
+		<a href="http://www.singaporerugby.com/benefits">http://www.singaporerugby.com/benefits</a>
+	  </div>
+	  <br>
+	  <!--
       <div>
         <ul>
             <li>Ticket number   : {{ $coupon->ticket_number }}</li>
@@ -19,8 +24,9 @@
         </ul>
       </div>
       <p>Attached is your coupon.</p>
+	  -->
       <div>
-        <img src="{{ $message->embed('dummy-blank-coupon.jpg') }}">
+        <img src="{{ $message->embed('coupon.jpeg') }}">
       </div>
     </div>
   </body>

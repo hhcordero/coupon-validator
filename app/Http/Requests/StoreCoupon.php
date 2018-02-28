@@ -23,11 +23,14 @@ class StoreCoupon extends FormRequest
      */
     public function rules()
     {
+		/*
         return [
 			'ticket_number'	=> 'required|exists:coupon_inventories|unique:coupons',
 			'email'			=> 'required|email',
 			'first_name'	=> 'required',
 			'last_name'		=> 'required'
         ];
+		*/
+		return [];
     }
 }

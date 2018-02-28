@@ -11,6 +11,7 @@ use App\Coupon;
 use App\CouponInventory;
 use App\Mail\CouponDownloadLink;
 use App\Mail\CouponDownload;
+use Anam\Captcha\Captcha;
 
 class CouponController extends Controller
 {
@@ -30,8 +31,15 @@ class CouponController extends Controller
      * @param  Request  $request
      * @return Response
      */
-    public function store(StoreCoupon $request)
+    public function store(StoreCoupon $request, Captcha $captcha)
     {
+        $response = $captcha->check($request);
+
+        if (! $response->isVerified()) {
+            //dd($response->errors());
+            redirect()->route('coupon')->withErrors($response);
+        }
+
 		$coupon = new Coupon;
 		$coupon->uuid			= (string) Str::uuid();
 		$coupon->ticket_number 	= $request->ticket_number;
@@ -48,7 +56,7 @@ class CouponController extends Controller
 			->send(new CouponDownloadLink($coupon));
 
 		return redirect()->route('coupon')
-			->with('success', 'Download link was sent. Please check your email.');
+			->with('success', 'Success! Please check your email.');
     }
 
     /**

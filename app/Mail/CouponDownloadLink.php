@@ -36,6 +36,7 @@ class CouponDownloadLink extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.coupons.downloadlink');
+        return $this->subject('HSBC Singapore Rugby 7s Benefits')->view('emails.coupons.downloadlink');
+        //return $this->view('emails.coupons.downloadlink');
     }
 }

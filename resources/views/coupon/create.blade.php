@@ -1,8 +1,8 @@
 @extends('layouts.master')
-@section('title', 'Validate')
+@section('title', 'Ticket')
 @section('content')
   <div class="pt-5 pb-2 text-center">
-    <h2>Validate Coupon</h2>
+    <h2>Ticket</h2>
     <p class="lead">Provide ticket information below to claim coupon.</p> 
   </div>
   <div class="row">
@@ -40,6 +40,9 @@
           Last name is required.
         </div>
       </div>
+      <br />
+      @captcha()
+      <br />
       <hr class="mb-4">
       <button type="submit" class="btn btn-primary btn-lg btn-block">Validate</button>
 
