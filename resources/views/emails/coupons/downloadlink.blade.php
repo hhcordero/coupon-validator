@@ -9,7 +9,7 @@
   <body class="bg-light">
     <div class="container">
       <p>Hi {{ $coupon->first_name }},</p>
-      <p>Thank you for joining us!.  Your voucher will be sent to your email by clicking below:</p>
+      <p>Thank you for joining us!  Your voucher will be sent to your email by clicking below:</p>
       <div>
         <a href="{{ $coupon->download_link }}">{{ $coupon->download_link }}</a>
       </div>

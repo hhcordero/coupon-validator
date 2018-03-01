@@ -77,8 +77,11 @@ class CouponController extends Controller
 			Mail::to($coupon->email)
 				->send(new CouponDownload($coupon));
 
+			/*
 			return redirect()->route('coupon')
 				->with('success', 'Coupon was sent. Please check your email.');
+			*/
+			return redirect()->to('http://www.singapore7s.sg/home/benefits');
 
 		} else {
 			return redirect()->route('coupon')

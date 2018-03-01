@@ -11,10 +11,8 @@
       <p>Hi {{ $coupon->first_name }},</p>
       <p>Time to start enjoying those offers!</p>
 	  <div>
-		<a href="http://www.singaporerugby.com/benefits">http://www.singaporerugby.com/benefits</a>
+		<a href="http://www.singapore7s.sg/home/benefits">http://www.singapore7s.sg/home/benefits</a>
 	  </div>
-	  <br>
-	  <!--
       <div>
         <ul>
             <li>Ticket number   : {{ $coupon->ticket_number }}</li>
@@ -24,7 +22,6 @@
         </ul>
       </div>
       <p>Attached is your coupon.</p>
-	  -->
       <div>
         <img src="{{ $message->embed('coupon.jpeg') }}">
       </div>
